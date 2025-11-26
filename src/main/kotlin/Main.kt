@@ -5,7 +5,7 @@ data class Post(
     val owerId: Int, // владелец стены
     val fromId: Int, // отрпавитель поста
     val text: String = "", // текст поста
-    val friendsonly: Boolean = false,// только для друзей
+    val friendsOnly: Boolean = false,// только для друзей
     val copiraght: String = "", // источник материала
     val date: Long = 2,
     val comment: Comments = Comments(),
@@ -18,8 +18,8 @@ data class Post(
 }
 data class Comments(
     val count: Int = 0,// количество
-    val can_post: Boolean = true, // модет ли пользователь комментировать
-    val groop_can_post: Boolean = true // могут ли группы комментировать пост
+    val canPost: Boolean = true, // модет ли пользователь комментировать
+    val groopCanPost: Boolean = true // могут ли группы комментировать пост
 ) {
     override fun toString(): String {
         return "количество комментарием ${count}"
@@ -28,18 +28,18 @@ data class Comments(
 
 data class Likes(
     val count: Int = 0, // количество лайков
-    val user_like: Boolean = true, // наличие лайка от текущего пользователя
-    val can_Like: Boolean = true // информация о том может ли текущий пользователь поставить лайк
+    val userLike: Boolean = true, // наличие лайка от текущего пользователя
+    val canLike: Boolean = true // информация о том может ли текущий пользователь поставить лайк
 )
 
 object WallServise {
     private val posts = mutableListOf<Post>()  //создали массив куда будем помещать все посты
 
     // создаем переменную куда будем класть уникальный идентификатор
-    var idnull = 0
+    var idNull = 0
 
     fun add(post: Post): Post {
-        val uniqId = ++idnull
+        val uniqId = ++idNull
         val newPost = post.copy(id = uniqId)
         posts.add(newPost)
         return newPost
@@ -63,7 +63,7 @@ object WallServise {
 }
 
 fun main() {
-    val WallServise = WallServise // создаем объект сервиса работы с постами
+
 
     val firstPost = Post(  // создали пост
         owerId = 12345,
