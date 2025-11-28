@@ -46,45 +46,53 @@ object WallServise {
 
 
     }
-    fun update (post: Post) : Boolean {
+
+    fun update(post: Post): Boolean {
         // Проходим цикл по всему списку постов
         // Проверяем, совпадает ли идентификатор текущего поста с искомым
         // Если совпадение найдено, обновляем пост и возвращаем true
-        for ((index,currentPost) in posts.withIndex()) {
+        for ((index, currentPost) in posts.withIndex()) {
             if (currentPost.id == post.id) {
                 posts[index] = post
-                return  true
+                return true
             }
 
         }
         return false
     }
 
-}
+    fun resetState() {
+        posts.clear()                          // Очищаем список постов
+        idNull = 0                             // Сбрасываем счётчик идентификаторов
 
-fun main() {
+    }
 
 
-    val firstPost = Post(  // создали пост
-        owerId = 12345,
-        fromId = 1233,
-        text = "Привет",
-        comment = Comments(1)
+    fun main() {
 
-    )
-    val SecondPost = Post(  // создали пост
-        owerId = 12345,
-        fromId = 1233,
-        text = "Пока"
-    )
 
-    val newPost = WallServise.add(firstPost)
-    val modifPost = newPost.copy(text = "Привет мир")
-    val savedPost = WallServise.update(modifPost)
-    println("$savedPost")
+        val firstPost = Post(  // создали пост
+            owerId = 12345,
+            fromId = 1233,
+            text = "Привет",
+            comment = Comments(1)
 
-    // Добавляем пост и получаем его с уникальным идентификатором
-    // Модифицируем текст поста
-    // Пробуем обновить пост
+        )
+        val SecondPost = Post(  // создали пост
+            owerId = 12345,
+            fromId = 1233,
+            text = "Пока"
+        )
+
+        val newPost = WallServise.add(firstPost)
+        val modifPost = newPost.copy(text = "Привет мир")
+        val savedPost = WallServise.update(modifPost)
+        println("$savedPost")
+
+        // Добавляем пост и получаем его с уникальным идентификатором
+        // Модифицируем текст поста
+        // Пробуем обновить пост
+
+    }
 
 }

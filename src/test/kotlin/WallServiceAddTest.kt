@@ -11,6 +11,7 @@ class WallServiceAddTest {
     @Before
     public fun setUp() {
         wallService = WallServise
+        WallServise.resetState()
     }
 
     @Test
